@@ -10,6 +10,10 @@ if __name__ == "__main__":
 
     df = Query(con).data_for_analysis()
 
-    baseDf = Wrangle(df).format()
+    data = Wrangle(df)
 
-    lm = Linear(baseDf).smlinear_w_constant()
+    data.format()
+
+    data.pca()
+    
+    lm = Linear(data.df).smlinear_w_constant()

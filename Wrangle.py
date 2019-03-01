@@ -1,5 +1,13 @@
+#Load dependencies
 import pandas as pd
 import numpy as np
+from sklearn.preprocessing import StandardScaler
+from matplotlib import*
+import matplotlib.pyplot as plt
+from matplotlib.cm import register_cmap
+from scipy import stats
+from sklearn.decomposition import PCA 
+import seaborn
 
 class Wrangle:
 
@@ -70,4 +78,60 @@ class Wrangle:
         df.replace('', np.nan, inplace=True)
         df.dropna(inplace=True)
 
-        return df
+        self.df = df
+
+
+    def ffs(self):
+        """Forward Feature Selection"""
+
+        df = self.df
+
+        from sklearn.feature_selection import f_regression
+
+        X = df.drop(['price'],axis = 1)
+        y = df["price"]
+
+        ffs = f_regression(X,y)
+
+        variables = []
+        for i in range(0,len(X.columns)-1):
+            if ffs[0][i] >=50:
+                variables.append(X.columns[i])
+
+        variables.insert(0,'price')
+
+        self.df = df[variables]
+
+    def pca(self):
+        """Principal component analysis"""
+
+        df = self.df
+
+        depend = df.drop(['price'],axis = 1)
+        y = df["price"]
+
+        scaled = StandardScaler().fit_transform(df)
+
+        X = scaled[:,1:]
+        y = scaled[:,0]
+
+        pca = PCA(n_components=6)
+
+        # Conduct PCA
+        X_pca = pca.fit_transform(X)
+
+        # results
+        # print('Original number of features:', X.shape[1])
+        # print('Reduced number of features:', X_pca.shape[1])
+
+        dataset = pd.DataFrame(
+            {'price':y,
+            'pc1':X_pca[:,0],
+            'pc2':X_pca[:,1],
+            'pc3':X_pca[:,2],
+            'pc4':X_pca[:,3],
+            'pc5':X_pca[:,4],
+            'pc6':X_pca[:,5]}
+            )
+
+        self.df = dataset
