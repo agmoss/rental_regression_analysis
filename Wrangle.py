@@ -87,6 +87,8 @@ class Wrangle:
 
         df = self.df
 
+        print(df.shape)
+
         from sklearn.feature_selection import f_regression
 
         X = df.drop(['price'],axis = 1)
@@ -100,6 +102,8 @@ class Wrangle:
                 variables.append(X.columns[i])
 
         variables.insert(0,'price')
+
+        print(variables)
 
         self.df = df[variables]
 
