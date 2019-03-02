@@ -19,6 +19,7 @@ class Wrangle:
         df = self.df
 
         df.drop(df[df.sq_feet == 0].index, inplace=True)
+        df.drop(df[df.price == 0].index, inplace=True)
 
         df.dropna(inplace=True)
 
@@ -115,23 +116,48 @@ class Wrangle:
         X = scaled[:,1:]
         y = scaled[:,0]
 
-        pca = PCA(n_components=6)
+        #Perform eigendecomposition on covariance matrix
+        cov_mat = np.cov(X.T)
+        eig_vals, eig_vecs = np.linalg.eig(cov_mat)
+
+        #print('Eigenvectors \n%s' %eig_vecs)
+        #print('\nEigenvalues \n%s' %eig_vals)
 
         # Conduct PCA
+        pca = PCA(n_components=126) # ~ 60% explained variance
         X_pca = pca.fit_transform(X)
 
-        # results
-        # print('Original number of features:', X.shape[1])
-        # print('Reduced number of features:', X_pca.shape[1])
+        def explained_var_plot():
+            #Explained variance
+            pca = PCA().fit(X)
+            plt.plot(np.cumsum(pca.explained_variance_ratio_))
+            plt.xlabel('number of components')
+            plt.ylabel('cumulative explained variance')
+            plt.title("Explained Variance PCA")
+            fig = plt.gcf()
+            fig.savefig('images/explained_variance_pca.png',dpi=fig.dpi)
+            fig.clf()
 
-        dataset = pd.DataFrame(
-            {'price':y,
-            'pc1':X_pca[:,0],
-            'pc2':X_pca[:,1],
-            'pc3':X_pca[:,2],
-            'pc4':X_pca[:,3],
-            'pc5':X_pca[:,4],
-            'pc6':X_pca[:,5]}
+        explained_var_plot()
+
+        def pca_n_components():
+            plt.plot(range(126), pca.explained_variance_ratio_)
+            plt.plot(range(126), np.cumsum(pca.explained_variance_ratio_))
+            plt.title("Component-wise and Cumulative Explained Variance")
+            fig = plt.gcf()
+            fig.savefig('images/cumulative_explained_var.png',dpi=fig.dpi)
+            fig.clf()
+
+        pca_n_components()
+
+        df_y = pd.DataFrame(
+            {'price':y}
             )
 
-        self.df = dataset
+        df_x = pd.DataFrame(
+            X_pca
+        )
+
+        df = pd.merge(df_x, df_y, right_index=True, left_index=True)
+
+        self.df = df
