@@ -1,8 +1,8 @@
 from Connection import Connection
 from Query import Query
 from Wrangle import Wrangle
-from Linear import Linear
-from EnsembleTree import EnsembleTree
+
+from Regressors import Regressor, Linear, EnsembleTree, Knn, Mlp
 
 
 if __name__ == "__main__":
@@ -13,10 +13,15 @@ if __name__ == "__main__":
 
     data = Wrangle(df)
 
-    data.format()
+    data.format() # Rearange and clean
 
-    data.ffs()
+    data.ffs() # Forward feature selection
 
-    ffs = Linear(data.df).smlinear_w_constant()
-    ffs1 = Linear(data.df).sklinear()
+    # Train and Test
+    linear = Linear(data.df).sklinear()
+
     ensemble = EnsembleTree(data.df).skEnsemble()
+
+    neighbors = Knn(data.df).skKnn()
+
+    nn = Mlp(data.df).skMlp()
