@@ -112,7 +112,7 @@ class Wrangle:
 
         df = self.df
 
-        depend = df.drop(['price'],axis = 1)
+        X = df.drop(['price'],axis = 1)
         y = df["price"]
 
         scaled = StandardScaler().fit_transform(df)

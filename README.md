@@ -1,5 +1,4 @@
 # Multiple Regression Analysis of Rental Listing Data 
-
 >Predicting rental prices in the city of Calgary 
 
 [![Python 3.6](https://img.shields.io/badge/python-3.6-blue.svg)](https://www.python.org/downloads/release/python-360/) 
@@ -14,7 +13,7 @@
     * [Principles of Regression Analysis](#principles-of-regression-analysis) 
     * [Linear Model](#linear-model) 
     * [Results](#results) 
-    * [Machine Learning Models](#machine-learning-models) 
+    * [Supervised Machine Learning Regression](#Supervised-Machine-Learning-Regression) 
         * [Multilayer Perceptron (MLP)](#Multilayer-Perceptron-(MLP)) 
         * [K Nearest Neighbors (KNN)](#k-nearest-neighbors-(KNN)) 
         * [Gradient Boosting Regressor](#Gradient-Boosting-Regressor) 
@@ -24,24 +23,25 @@
 1. [Usage](#usage)  
 1. [Prerequisites](#Prerequisites) 
 1. [Built With](#Built-With) 
-1. [License](#license) 
 1. [Author](#author) 
+1. [License](#license) 
 
-# About the Project  
+
+## About the Project  
 
 This analysis has been developed as part of the Calgary Project, a free and open source tool for rental property analysis. The goal of the Calgary Project is to democratize an understanding of the Calgary rental market for all. 
 
-# Project Status  
+## Project Status  
 
 Beta 
 
-# Variables 
+## Variables 
 
 Discrete categorical attributes: community, den, location, quadrant, type, utilities_included 
 Discrete numeric attributes: baths, bedroons, cats, dogs 
 Continuous attributes: price, sq_feet 
 
-# Exploratory Data Analysis 
+## Exploratory Data Analysis 
 
 An exploratory data analysis dashboard for this data is housed at:  
 
@@ -49,15 +49,15 @@ https://calgaryproject.net/dashboard/
 
 **[Back to top](#table-of-contents)** 
 
-# Regression 
+## Regression 
 
-## Principles of Regression Analysis 
+### Principles of Regression Analysis 
 
 Regression analysis is a predictive modeling technique used to determine the relationships between variables. A regression model provides the user an opportunity to predict the outcome of a relationship with a dependent variable and one or more independent variables. The dependent variable is the factor you wish to understand or predict, and independent variable(s) cause the changes in the dependent variables. 
 
 In this modeling scenario, the dependent variable is price per month. The independent variables are descriptive features such as community, square feet, dogs & cats (yes/no), and utilities included (electricity, heat, cable, internet etc.). It is presumed that the value of price per month is dependent on the value of these descriptive features. 
 
-## Linear Model  
+### Linear Model  
 
 Correlation analysis and forward feature selection confirm that the main variables affecting price are square feet and number of bedrooms. This confirms natural intuition, however the R2 values in a single linear regression are only in the ~0.1 range. Multiple independent variables are needed to accurately model this scenario. 
 
@@ -117,9 +117,10 @@ The RMSE is the square root of the variance of the residuals. This value indicat
 
 As RMSE is the standard deviation of unexplained variance, it should be used to evaluate the potential for incorrect prediction. RMSE claims that historically, the model’s predictions have exhibited a variance equal to the magnitude of the RMSE value. Therefore, if we assume that our historical training data is indicative of the future, the model’s prediction can potentially be off by plus or minus one RMSE value.  
 
-Interpreting the RMSE 
-    Low RMSE value = more accurate prediction  
-    Prediction can potentially be off by ±RMSE 
+***Interpreting the RMSE***
+
+* Low RMSE value = more accurate prediction  
+* Prediction can potentially be off by ±RMSE 
 
  
 **[Back to top](#table-of-contents)** 
@@ -127,21 +128,21 @@ Interpreting the RMSE
 ## Evaluation & Results 
 Model parameters are currently being tuned. 
 
-###Multilayer Perceptron (MLP)
+### Multilayer Perceptron (MLP)
 Measure  | Value
 ------------- | -------------
 Out of sample R2 | 0.58
 In Sample R2 | 0.6
 RMSE | $290.19
 
-###K Nearest Neighbors (KNN)
+### K Nearest Neighbors (KNN)
 Measure  | Value
 ------------- | -------------
 Out of sample R2 | 0.34
 In Sample R2 | 0.57
 RMSE | $361.96
 
-###Gradient Boosting Regressor
+### Gradient Boosting Regressor
 Measure  | Value
 ------------- | -------------
 Out of sample R2 | 0.64
@@ -160,7 +161,7 @@ The development of the project has yielded a reusable codebase for machine learn
 
 This project is currently not open for contributions
 
-### Prerequisites
+# Prerequisites
 
 Dependencies can be installed via:
 
@@ -168,16 +169,17 @@ Dependencies can be installed via:
 pip install requirements.txt
 ```
 
-## Built With 
+# Built With 
 
 * [scikit-learn](https://scikit-learn.org/stable/) - Machine Learning in Python  
 * [StatsModels](https://www.statsmodels.org/stable/index.html) - Statistics in Python  
 * [Pandas](https://pandas.pydata.org/) - Python data analysis library 
 * [NumPy](http://www.numpy.org/) - NumPy is the fundamental package for scientific computing with Python. 
 
-## Author 
+# Author 
 * **Andrew Moss** - *Creator* - [agmoss](https://github.com/agmoss) 
 
-## License 
+# License 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details 
+
 **[Back to top](#table-of-contents)** 
