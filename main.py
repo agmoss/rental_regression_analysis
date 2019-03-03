@@ -4,6 +4,8 @@ from Wrangle import Wrangle
 
 from Regressors import Regressor, Linear, EnsembleTree, Knn, Mlp
 
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
 

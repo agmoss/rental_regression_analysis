@@ -87,6 +87,8 @@ class Wrangle:
 
         df = self.df
 
+        print(df.shape)
+
         from sklearn.feature_selection import f_regression
 
         X = df.drop(['price'],axis = 1)
@@ -101,6 +103,8 @@ class Wrangle:
 
         variables.insert(0,'price')
 
+        print(variables)
+
         self.df = df[variables]
 
     def pca(self):
@@ -108,7 +112,7 @@ class Wrangle:
 
         df = self.df
 
-        depend = df.drop(['price'],axis = 1)
+        X = df.drop(['price'],axis = 1)
         y = df["price"]
 
         scaled = StandardScaler().fit_transform(df)
