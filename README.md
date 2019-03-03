@@ -37,17 +37,15 @@ Beta
 
 ## Variables 
 
-Discrete categorical attributes: community, den, location, quadrant, type, utilities_included 
-Discrete numeric attributes: baths, bedroons, cats, dogs 
-Continuous attributes: price, sq_feet 
+* ***Discrete categorical attributes***: community, den, location, quadrant, type, utilities_included 
+* ***Discrete numeric attributes***: baths, bedroons, cats, dogs 
+* ***Continuous attributes***: price, sq_feet 
 
 ## Exploratory Data Analysis 
 
 An exploratory data analysis dashboard for this data is housed at:  
 
 https://calgaryproject.net/dashboard/ 
-
-**[Back to top](#table-of-contents)** 
 
 ## Regression 
 
@@ -149,19 +147,19 @@ Out of sample R2 | 0.64
 In Sample R2 | 0.71
 RMSE | $266.03
 
-# Predictions
+## Predictions
 
 Under construction
 
-# Usage
+## Usage
 
 The development of the project has yielded a reusable codebase for machine learning with scikit-learn. This functionality is housed in the Regressors.py file.
 
-# Contributing
+## Contributing
 
 This project is currently not open for contributions
 
-# Prerequisites
+## Prerequisites
 
 Dependencies can be installed via:
 
@@ -169,17 +167,17 @@ Dependencies can be installed via:
 pip install requirements.txt
 ```
 
-# Built With 
+## Built With 
 
 * [scikit-learn](https://scikit-learn.org/stable/) - Machine Learning in Python  
 * [StatsModels](https://www.statsmodels.org/stable/index.html) - Statistics in Python  
 * [Pandas](https://pandas.pydata.org/) - Python data analysis library 
 * [NumPy](http://www.numpy.org/) - NumPy is the fundamental package for scientific computing with Python. 
 
-# Author 
+## Author 
 * **Andrew Moss** - *Creator* - [agmoss](https://github.com/agmoss) 
 
-# License 
+## License 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details 
 
 **[Back to top](#table-of-contents)** 
