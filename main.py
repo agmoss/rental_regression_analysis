@@ -9,21 +9,30 @@ import matplotlib.pyplot as plt
 
 if __name__ == "__main__":
 
-    con = Connection.connect()
+    con = Connection.connect() # Database objects
 
-    df = Query(con).data_for_analysis()
+    df = Query(con).data_for_analysis() # Initial dataframe
 
-    data = Wrangle(df)
+    data = Wrangle(df) # Wrangler class for data cleaning/formatting
 
     data.format() # Rearange and clean
 
     data.ffs() # Forward feature selection
 
-    # Train and Test
-    linear = Linear(data.df).sklinear()
+    # algorithm objects
+    linear = Linear(data.df)
+    ensemble = EnsembleTree(data.df)
+    neighbors = Knn(data.df)
+    nn = Mlp(data.df)
+    
+    # Training/testing (outputs error measures)
+    linear.sklinear(predict = False)
+    ensemble.skEnsemble(predict = False)
+    neighbors.skKnn(predict = False)
+    nn.skMlp(predict=False)
 
-    ensemble = EnsembleTree(data.df).skEnsemble()
-
-    neighbors = Knn(data.df).skKnn()
-
-    nn = Mlp(data.df).skMlp()
+    # Predictions
+    linear.sklinear(predict = True)
+    ensemble.skEnsemble(predict = True)
+    neighbors.skKnn(predict = True)
+    nn.skMlp(predict=True)

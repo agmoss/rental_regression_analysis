@@ -147,13 +147,81 @@ Out of sample R2 | 0.64
 In Sample R2 | 0.71
 RMSE | $266.03
 
-## Predictions
-
-Under construction
 
 ## Usage
 
-The development of the project has yielded a reusable codebase for machine learning with scikit-learn. This functionality is housed in the Regressors.py file.
+The development of the project has yielded a reusable codebase for machine learning with scikit-learn. The Regressors.py file contains a class called Regressor. Instantiating this class requires a dataframe object of rental listing data. The class exposes formatted NumPy arrays of training/testing data, prediction data, and a sample prediction case. When implemented on the web, prediction dependent variables will be provided to the user and used in the instantiating of this class.  
+
+
+Four algorithm class subclass the regressor and gain access to this data. The algorithm classes implement thier respective machine learning methods via the scikit-learn package. Methods within the algorithm classed and can either train/test the algorithm or offer a price prediction for the user specified dependent variables. 
+
+```python
+if __name__ == "__main__":
+    """Main Method"""
+
+    con = Connection.connect() # Database connection object
+
+    df = Query(con).data_for_analysis() # Initial dataframe
+
+    data = Wrangle(df) # Wrangler class for data cleaning/formatting
+
+    data.format() # Rearange and clean
+
+    data.ffs() # Forward feature selection
+
+    # Algorithm objects
+    linear = Linear(data.df)
+    ensemble = EnsembleTree(data.df)
+    neighbors = Knn(data.df)
+    nn = Mlp(data.df)
+    
+    # Training/testing (outputs error measures)
+    linear.sklinear(predict = False)
+    ensemble.skEnsemble(predict = False)
+    neighbors.skKnn(predict = False)
+    nn.skMlp(predict=False)
+
+    # Predictions
+    linear.sklinear(predict = True)
+    ensemble.skEnsemble(predict = True)
+    neighbors.skKnn(predict = True)
+    nn.skMlp(predict=True)
+```
+
+The following is an example of an algorithm class:
+
+```python
+class Mlp(Regressor):
+
+    def __init__(self,df):
+        # Instantiate superclass
+        super().__init__(df)
+
+    def skMlp(self,predict = False):
+
+        # Multi-layer Perceptron regressor
+        mlp = MLPRegressor(hidden_layer_sizes=(500,),
+                                       activation='relu',
+                                       solver='adam',
+                                       learning_rate='adaptive',
+                                       max_iter=1000,
+                                       learning_rate_init=0.01,
+                                       alpha=0.01)
+
+        if not predict:
+
+            mlp.fit(self.X_train, self.y_train)
+
+            y_pred = mlp.predict(self.X_test)
+
+            super().evaluate("MPL",mlp,y_pred) # Error measures
+            super().sample_backwards(y_pred) # Compare independent variables predictions to independent variable test data
+
+        else:
+
+            super().predict(mlp) # Predict the price using the sample user specified input data
+
+```
 
 ## Contributing
 
