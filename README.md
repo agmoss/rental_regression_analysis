@@ -18,7 +18,7 @@
         * [K Nearest Neighbors (KNN)](#k-nearest-neighbors-(KNN)) 
         * [Gradient Boosting Regressor](#Gradient-Boosting-Regressor) 
     * [Assessing Model Fit (RMSE)](#assessing-model-fit-rmse) 
-    * [Evaluation & Results](#evaluation-&-results)  
+    * [Evaluation & Results](#evaluation--results)  
 1. [Usage](#usage)  
 1. [Prerequisites](#Prerequisites) 
 1. [Built With](#Built-With) 
