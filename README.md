@@ -128,24 +128,23 @@ Model parameters are currently being tuned.
 ### Multilayer Perceptron (MLP)
 Measure  | Value
 ------------- | -------------
-Out of sample R2 | 0.58
-In Sample R2 | 0.6
-RMSE | $290.19
+Out of sample R2 | 0.67
+In Sample R2 | 0.74
+RMSE | $275
+
+### Gradient Boosting Regressor
+Measure  | Value
+------------- | -------------
+Out of sample R2 | 0.63
+In Sample R2 | 0.71
+RMSE | $291
 
 ### K Nearest Neighbors (KNN)
 Measure  | Value
 ------------- | -------------
 Out of sample R2 | 0.34
 In Sample R2 | 0.57
-RMSE | $361.96
-
-### Gradient Boosting Regressor
-Measure  | Value
-------------- | -------------
-Out of sample R2 | 0.64
-In Sample R2 | 0.71
-RMSE | $266.03
-
+RMSE | $362
 
 ## Usage
 

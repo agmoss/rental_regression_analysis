@@ -20,19 +20,21 @@ if __name__ == "__main__":
     data.ffs() # Forward feature selection
 
     # algorithm objects
-    linear = Linear(data.df)
+    #linear = Linear(data.df)
     ensemble = EnsembleTree(data.df)
-    neighbors = Knn(data.df)
-    nn = Mlp(data.df)
+    #neighbors = Knn(data.df)
+    #nn = Mlp(data.df)
+
+    
     
     # Training/testing (outputs error measures)
-    linear.sklinear(predict = False)
+    #linear.sklinear(predict = False)
     ensemble.skEnsemble(predict = False)
-    neighbors.skKnn(predict = False)
-    nn.skMlp(predict=False)
+    #neighbors.skKnn(predict = False)
+    #nn.skMlp(predict=False)
 
     # Predictions
-    linear.sklinear(predict = True)
-    ensemble.skEnsemble(predict = True)
-    neighbors.skKnn(predict = True)
-    nn.skMlp(predict=True)
+    #linear.sklinear(predict = True)
+    #ensemble.skEnsemble(predict = True)
+    #neighbors.skKnn(predict = True)
+    #nn.skMlp(predict=True)

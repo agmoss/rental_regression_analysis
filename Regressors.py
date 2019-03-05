@@ -17,6 +17,7 @@ from sklearn.ensemble import GradientBoostingRegressor
 from sklearn.neighbors import KNeighborsRegressor
 from sklearn.neural_network import MLPRegressor
 
+from sklearn.model_selection import GridSearchCV
 
 class Regressor:
 
@@ -31,7 +32,6 @@ class Regressor:
             'bedrooms': 3,
             'baths': 1,
             'dogs': 0,
-            'internet' : 0,
             'cable':0,
             'Quadrant_SW-Central': 0,
             'type_Basement': 0,
@@ -228,17 +228,21 @@ class Mlp(Regressor):
     def skMlp(self,predict = False):
 
         # Multi-layer Perceptron regressor
-        mlp = MLPRegressor(hidden_layer_sizes=(500,),
-                                       activation='relu',
-                                       solver='adam',
-                                       learning_rate='adaptive',
-                                       max_iter=1000,
-                                       learning_rate_init=0.01,
-                                       alpha=0.01)
+        mlp = MLPRegressor(hidden_layer_sizes=(30,10),
+                                        activation='tanh',
+                                        solver='adam',
+                                        learning_rate='adaptive',
+                                        max_iter=1000,
+                                        learning_rate_init=0.001,
+                                        warm_start=True,
+                                        alpha=0.01)
 
         if not predict:
 
+            # Fit the best algorithm to the data. 
             mlp.fit(self.X_train, self.y_train)
+
+            #mlp.fit(self.X_train, self.y_train)
 
             y_pred = mlp.predict(self.X_test)
 
