@@ -223,7 +223,7 @@ class Mlp(Regressor):
 
 ## Contributing
 
-This project is currently not open for contributions
+Feedback and pull requests are more than welcome!
 
 ## Prerequisites
 
