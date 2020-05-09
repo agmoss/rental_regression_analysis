@@ -42,12 +42,6 @@ Beta
 - **_Discrete numeric attributes_**: baths, bedroons, cats, dogs
 - **_Continuous attributes_**: price, sq_feet
 
-## Exploratory Data Analysis
-
-An exploratory data analysis dashboard for this data is housed at:
-
-https://calgaryproject.net/dashboard/
-
 ## Regression
 
 ### Principles of Regression Analysis
